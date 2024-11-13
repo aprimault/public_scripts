@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "main.h"
+#include <string.h>
+
+#define MAX_FUNCTIONS 40
+function_map fmap[MAX_FUNCTIONS];
+int fmap_size = 0;
+
+void call_function_by_name(char* name) {
+    for (int i = 0; fmap[i].name != NULL; i++) {
+        if (strcmp(fmap[i].name, name) == 0) {
+            fmap[i].func();
+            return;
+        }
+    }
+    printf("La fonction %s n'a pas été trouvée.\n", name);
+}
+
+void add_function(const char *name, func_ptr func) {
+    if (fmap_size < MAX_FUNCTIONS) {
+        fmap[fmap_size].name = name;
+        fmap[fmap_size].func = func;
+        fmap_size++;
+    } else {
+        printf("Limite de fonctions atteinte.\n");
+    }
+}
+
+int main() {
+    const char *filename = "exercise_number.txt";
+
+    fmap_fill();
+
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return EXIT_FAILURE;
+    }
+
+    int ch1 = fgetc(file);
+    if (ch1 == EOF) {
+        if (feof(file)) {
+            printf("Le fichier est vide.\n");
+        } else {
+            perror("Erreur lors de la lecture du fichier");
+        }
+        fclose(file);
+        return EXIT_FAILURE;
+    }
+
+    int ch2 = fgetc(file);
+        if (ch2 == EOF) {
+            if (feof(file)) {
+                printf("Le fichier est vide.\n");
+            } else {
+                perror("Erreur lors de la lecture du fichier");
+            }
+            fclose(file);
+            return EXIT_FAILURE;
+        }
+
+    fclose(file);
+
+    char buffer[100];
+    sprintf(buffer, "ex%c%c_main", ch1, ch2);
+
+    call_function_by_name(buffer);
+
+    return EXIT_SUCCESS;
+}
+
+void fmap_fill() {
+{{ALL_FCT_DEF}}
+}

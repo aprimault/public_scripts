@@ -1,0 +1,18 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+{{ALL_INCLUDES}}
+
+typedef int (*func_ptr)();
+
+typedef struct {
+    const char *name;
+    func_ptr func;
+} function_map;
+
+void add_function(const char *name, func_ptr func);
+void fmap_fill();
+
+{{ALL_H_DEF}}
+
+#endif

@@ -1,0 +1,13 @@
+#ifndef EXERCICE{{EX_NB}}_C
+#define EXERCICE{{EX_NB}}_C
+{{ALL_INCLUDES}}
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int ex{{EX_NB}}_main() {
+    printf("Exercice {{EX_NB}}\n");
+    return 0;
+}
+
+#endif
