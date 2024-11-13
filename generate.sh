@@ -77,13 +77,13 @@ for i in $(seq $1 $2); do
     generate_template "exercice$formatted.c" "exercice$formatted.c" "{{EX_NB}}" "$formatted"
 done
 
-
-
 generate_template "public_scripts/template_main.txt" "main.c" "{{ALL_FCT_DEF}}" "${ALL_FCT_DEF[@]}"
 generate_template "public_scripts/template_main_h.txt" "main.h" "{{ALL_H_DEF}}" "${ALL_H_DEF[@]}"
 generate_template "main.h" "main.h" "{{ALL_INCLUDES}}" "${ALL_INCLUDES_EX[@]}"
 generate_template "public_scripts/template_cmake.txt" "CMakeLists.txt" "{{ALL_CFG_TARGETS}}" "${ALL_CFG_TARGETS[@]}"
 generate_template "CMakeLists.txt" "CMakeLists.txt" "{{PROJ_NAME}}" "$3"
+
+rm -rf public_scripts
 
 clion . &
 
