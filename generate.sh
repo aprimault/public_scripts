@@ -73,7 +73,7 @@ for i in $(seq $1 $2); do
   formatted=$(printf "%02d" $i)
     all_inc=($(get_all_except_one ALL_INCLUDES_EX[@] $i))
     cp "public_scripts/template_ex.txt" "exercice$formatted.c"
-    generate_template "public_scripts/template_ex.txt" "exercice$formatted.c" "{{ALL_INCLUDES}}" "${all_inc[@]}"
+    generate_template "public_scripts/template_ex.txt" "exercice$formatted.c" "{{ALL_INCLUDES}}" "#include%%%%%%\"main.h\""
     generate_template "exercice$formatted.c" "exercice$formatted.c" "{{EX_NB}}" "$formatted"
 done
 
